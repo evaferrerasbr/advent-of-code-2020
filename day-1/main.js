@@ -203,7 +203,8 @@ const expenseReport = [
   1909,
 ];
 
-const getEntries = () => {
+//part 1
+const getEntriesOne = () => {
   const modifiedArray = expenseReport.map((expense) => 2020 - expense);
   const numbers = [];
   for (let i = 0; i < expenseReport.length; i++) {
@@ -217,4 +218,18 @@ const getEntries = () => {
   return mult;
 };
 
-console.log(getEntries());
+//part 2
+const getEntriesTwo = () => {
+  const numbers = [];
+  for (let i = 0; i < expenseReport.length; i++) {
+    for (let j = i + 1; j < expenseReport.length; j++) {
+      for (let k = j + 1; k < expenseReport.length; k++) {
+        if (expenseReport[i] + expenseReport[j] + expenseReport[k] === 2020) {
+          numbers.push(expenseReport[i], expenseReport[j], expenseReport[k]);
+        }
+      }
+    }
+  }
+  const mult = numbers.reduce((value, number) => value * number, 1);
+  return mult;
+};
