@@ -2,12 +2,13 @@ const fs = require('fs');
 
 const lines = fs
   .readFileSync('dataTest.txt', { encoding: 'utf-8' })
-  .split('\n')
-  .filter((x) => x);
+  .split(/\r?\n|\r/g);
+
+console.log(lines);
 
 let validPasswords = 0;
 
-lines.forEach((line) => {
-  const match = /^(\d+)-(\d+) (.): (.*)$/.exec(line);
+for (let i = 0; i < lines.length; i++) {
+  const match = /^(\d+)-(\d+) (.): (.*)$/.exec(lines[i]);
   console.log(match);
-});
+}
