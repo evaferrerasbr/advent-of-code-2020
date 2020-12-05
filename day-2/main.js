@@ -27,7 +27,7 @@ for (let i = 0; i < lines.length; i++) {
 
 //part 2
 
-let validPasswords2 = 0;
+let newValidPasswords = 0;
 
 for (let i = 0; i < lines.length; i++) {
   const {
@@ -41,6 +41,6 @@ for (let i = 0; i < lines.length; i++) {
     (groups.password[groups.from - 1] !== groups.character &&
       groups.password[groups.to - 1] === groups.character)
   ) {
-    validPasswords2++;
+    newValidPasswords++;
   }
 }
