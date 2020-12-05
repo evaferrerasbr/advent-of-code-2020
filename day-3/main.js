@@ -14,3 +14,5 @@ for (let i = 0; i < forest.length; i++) {
     counter++;
   }
 }
+
+//part 2
