@@ -16,3 +16,21 @@ for (let i = 0; i < forest.length; i++) {
 }
 
 //part 2
+const multiplierArray = [1, 3, 5, 7];
+const counters = [];
+
+for (let i = 0; i < multiplierArray.length; i++) {
+  let counter = 0;
+  for (let j = 0; j < forest.length; j++) {
+    const forestLine = j;
+    const treeSearcher = i * j;
+    const stringIndex = treeSearcher % forest[forestLine].length;
+    if (forest[forestLine][stringIndex] === '#') {
+      counter++;
+    }
+  }
+}
+
+const result = counters.reduce((value, number) => value * number, 1);
+
+console.log(result);
