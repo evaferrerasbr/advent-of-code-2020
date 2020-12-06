@@ -16,21 +16,45 @@ for (let i = 0; i < forest.length; i++) {
 }
 
 //part 2
-const multiplierArray = [1, 3, 5, 7];
-const counters = [];
+const slopes = [
+  {
+    right: 1,
+    down: 1,
+  },
+  {
+    right: 3,
+    down: 1,
+  },
+  {
+    right: 5,
+    down: 1,
+  },
+  {
+    right: 7,
+    down: 1,
+  },
+  {
+    right: 1,
+    down: 2,
+  },
+];
 
-for (let i = 0; i < multiplierArray.length; i++) {
+const finalCounter = [];
+
+for (let i = 0; i < slopes.length; i++) {
   let counter = 0;
-  for (let j = 0; j < forest.length; j++) {
-    const forestLine = j;
-    const treeSearcher = i * j;
-    const stringIndex = treeSearcher % forest[forestLine].length;
-    if (forest[forestLine][stringIndex] === '#') {
+  let numberOfSteps = 0;
+  let verticalSteps = 0;
+  do {
+    verticalSteps = slopes[i].down * numberOfSteps;
+    const horizontalSteps = slopes[i].right * numberOfSteps;
+    const stringIndex = horizontalSteps % forest[verticalSteps].length;
+    if (forest[verticalSteps][stringIndex] === '#') {
       counter++;
     }
-  }
+    numberOfSteps++;
+  } while (verticalSteps + 1 < forest.length);
+  finalCounter.push(counter);
 }
 
-const result = counters.reduce((value, number) => value * number, 1);
-
-console.log(result);
+const result = finalCounter.reduce((value, number) => value * number, 1);
