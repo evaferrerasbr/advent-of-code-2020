@@ -54,6 +54,7 @@ const findTreesWithSlopes = () => {
     let numberOfSteps = 0;
     let verticalSteps = 0;
     do {
+      //verticalSteps is the forest index
       verticalSteps = slopes[i].down * numberOfSteps;
       const horizontalSteps = slopes[i].right * numberOfSteps;
       const stringIndex = horizontalSteps % forest[verticalSteps].length;
