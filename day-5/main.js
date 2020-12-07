@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const boardingPasses = fs
-  .readFileSync('dataTest.txt', { encoding: 'utf-8' })
+  .readFileSync('data.txt', { encoding: 'utf-8' })
   .toString()
   .split(/\r?\n|\r/g);
 
@@ -23,7 +23,7 @@ for (let i = 0; i < boardingPasses.length; i++) {
     if (j <= 6) {
       pass.row = pass.row.concat(binaryPass[j]);
     } else {
-      pass.column = pass.row.concat(binaryPass[j]);
+      pass.column = pass.column.concat(binaryPass[j]);
     }
   }
   binaryPasses.push(pass);
