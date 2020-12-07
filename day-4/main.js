@@ -1,31 +1,32 @@
 const fs = require('fs');
 
 const documents = fs
-  .readFileSync('dataTest.txt', { encoding: 'utf-8' })
+  .readFileSync('data.txt', { encoding: 'utf-8' })
   .split('\r\n\r\n');
-//each element of the array is a string with all the information of a document
 
 //part 1
 
-let validDocuments = 0;
-
-const keyDocuments = documents.map((document) =>
-  document.match(/([a-z]{3}):/gm)
-);
-//each element of the array is a key ('hcl', 'cid'...)
-
-for (const keyDocument of keyDocuments) {
-  if (keyDocument.length === 8) {
-    validDocuments++;
-  } else if (keyDocument.length === 7 && !keyDocument.includes('cid:')) {
-    validDocuments++;
+//creates an array with the keys of the documents and checks if it has all the required information
+const checkDocuments = () => {
+  let validDocuments = 0;
+  const keyDocuments = documents.map((document) =>
+    document.match(/([a-z]{3}):/gm)
+  );
+  for (const keyDocument of keyDocuments) {
+    if (keyDocument.length === 8) {
+      validDocuments++;
+    } else if (keyDocument.length === 7 && !keyDocument.includes('cid:')) {
+      validDocuments++;
+    }
   }
-}
+  return validDocuments;
+};
+
+checkDocuments();
 
 //part 2
 
-let newValidDocuments = 0;
-
+//an object with the required information
 const validation = {
   byr: /byr:(19[2-9][0-9])|(200[0-2])\b/,
   iyr: /iyr:(201[0-9])|(2020)\b/,
@@ -35,18 +36,24 @@ const validation = {
   ecl: /ecl:(amb|blu|brn|gry|grn|hzl|oth)\b/,
   pid: /pid:([0-9]{9})\b/,
 };
-//an object with the required information
 
-documents.map((document) => {
-  let objDocuments = {};
-  try {
-    for (const key of Object.keys(validation)) {
-      objDocuments[key] = document.match(validation[key][1]);
-      //[1] is needed so it takes only the 1st group information
+//creates an object with a key for each validation's key and a value with the value of the match
+const checkNewDocuments = () => {
+  let validDocuments = 0;
+  documents.map((document) => {
+    let objDocuments = {};
+    try {
+      for (const key of Object.keys(validation)) {
+        objDocuments[key] = document.match(validation[key][1]);
+        //[1] is needed so it takes only the 1st group information of the regexp
+      }
+      validDocuments++;
+    } catch (error) {
+      return null;
+      //catch is needed when it doesnt match
     }
-    newValidDocuments++;
-  } catch (error) {
-    return null;
-    //catch is needed when it doesnt match
-  }
-});
+  });
+  return validDocuments;
+};
+
+checkNewDocuments();
