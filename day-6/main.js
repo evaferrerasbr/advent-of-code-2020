@@ -19,7 +19,7 @@ const deleteCharacters = () => {
 
 deleteCharacters();
 
-//includes not repeated letters in a new string to check in how many questions  anyone answered yes
+//includes not repeated letters in a new string to check in how many questions anyone has answered yes
 const getAnswers = () => {
   let letterMatches = 0;
   for (let i = 0; i < forms.length; i++) {
