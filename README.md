@@ -1,5 +1,5 @@
 ## Advent of code 2020
 
-Soluciones a a los retos del **Advent of code 2020**. Cada reto está en una carpeta con el nombre del día correspondiente.
+Solutions of the **Advent of code 2020** challenges. Each challenge is in a folder named with the day.
 
-Los enunciados de los retos se pueden encontrar en [https://adventofcode.com](https://adventofcode.com/). Además, en cada carpeta hay un fichero .txt con el nombre _challenge_ en el que se puede leer el enunciado del problema de ese día.
+The challenge description can be found at [https://adventofcode.com](https://adventofcode.com/). Besides, each folder has a .txt with the name _challenge_ where you can also read it.
